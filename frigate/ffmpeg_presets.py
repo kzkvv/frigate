@@ -55,6 +55,7 @@ _user_agent_args = [
 ]
 
 PRESETS_HW_ACCEL_DECODE = {
+    "preset-vulkan": "-int_hw_device vulkan=vk:0 -filter_hw_device vk",
     "preset-rpi-64-h264": "-c:v:1 h264_v4l2m2m",
     "preset-vaapi": f"-hwaccel_flags allow_profile_mismatch -hwaccel vaapi -hwaccel_device {_gpu_selector.get_selected_gpu()} -hwaccel_output_format vaapi",
     "preset-intel-qsv-h264": f"-hwaccel qsv -qsv_device {_gpu_selector.get_selected_gpu()} -hwaccel_output_format qsv -c:v h264_qsv",
@@ -67,6 +68,7 @@ PRESETS_HW_ACCEL_DECODE = {
 }
 
 PRESETS_HW_ACCEL_SCALE = {
+    "preset-vulkan": "-r {0} -vf fps={0},hwupload,scale_vulkan=w={1}:h={2}:format=nv12,hwdownload,format=nv12,format=yuv420p",
     "preset-rpi-64-h264": "-r {0} -vf fps={0},scale={1}:{2}",
     "preset-vaapi": "-r {0} -vf fps={0},scale_vaapi=w={1}:h={2}:format=nv12,hwdownload,format=nv12,format=yuv420p",
     "preset-intel-qsv-h264": "-r {0} -vf vpp_qsv=framerate={0}:w={1}:h={2}:format=nv12,hwdownload,format=nv12,format=yuv420p",
