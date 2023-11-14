@@ -74,7 +74,7 @@ fi
 
 # install vulkan
 apt-get -qq install --no-install-recommends --no-install-suggests -y \
-    libvulkan1 mesa-vulkan-drivers vulkan-utils
+    libvulkan1 mesa-vulkan-drivers
 
 apt-get purge gnupg apt-transport-https xz-utils -y
 apt-get clean autoclean -y
